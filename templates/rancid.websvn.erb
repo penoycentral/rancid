@@ -1,0 +1,31 @@
+LDAPConnectionTimeout 10
+LDAPTrustedMode SSL
+LDAPVerifyServerCert off
+
+<VirtualHost *:80>
+        Redirect / https://<%= @fqdn %>
+        ServerAdmin webmaster@localhost
+        ErrorLog logs/error.log
+        LogLevel warn
+        CustomLog logs/access.log combined
+</VirtualHost>
+<VirtualHost <%= @fqdn %>:443>
+        ServerName <%= @fqdn %>:443
+        SSLEngine on
+        SSLCertificateFile /etc/httpd/ssl/rancid.crt
+        SSLCertificateKeyFile /etc/httpd/ssl/rancid.key
+        DocumentRoot /var/www/html/websvn
+        ErrorLog logs/websvn.error.log
+        LogLevel warn
+        CustomLog logs/websvn.access.log combined
+        <Directory />
+          DirectoryIndex index.php
+          Options FollowSymLinks
+          Order allow,deny
+          Allow from all
+          <IfModule mod_php4.c>
+            php_flag magic_quotes_gpc Off
+            php_flag track_vars On
+          </IfModule>
+        </Directory>
+</VirtualHost>

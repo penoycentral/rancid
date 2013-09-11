@@ -1,0 +1,17 @@
+TERM=network;export TERM
+LC_COLLATE="POSIX"; export LC_COLLATE
+umask 027
+TMPDIR=/tmp; export TMPDIR
+BASEDIR=/var/lib/rancid; export BASEDIR
+PATH=/var/lib/rancid/bin:/usr/bin:.:/bin:/usr/local/bin:/usr/bin; export PATH
+CVSROOT=$BASEDIR/svn; export CVSROOT
+LOGDIR=$BASEDIR/logs; export LOGDIR
+RCSSYS=svn; export RCSSYS
+FILTER_PWDS=NO; export FILTER_PWDS
+NOCOMMSTR=NO; export NOCOMMSTR
+MAX_ROUNDS=4; export MAX_ROUNDS
+OLDTIME=4; export OLDTIME
+PAR_COUNT=10; export PAR_COUNT
+
+LIST_OF_GROUPS="<%= @device_groups %>"
+
